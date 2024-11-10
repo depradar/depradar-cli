@@ -1,0 +1,34 @@
+{
+  "name": "depradar",
+  "version": "0.0.1",
+  "description": "Secure, simplified dependency management for developers",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/depradar/depradar-cli.git"
+  },
+  "keywords": [
+    "package",
+    "dependency",
+    "management",
+    "reporting"
+  ],
+  "author": {
+    "name": "DepRadar",
+    "email": "info@depradar.dev",
+    "url": "https://depradar.dev"
+  },
+  "contributors": [
+    {
+      "name": "Lloyd White",
+      "email": "maddirtmonkey@gmail.com",
+      "url": "https://github.com/maddirtmonkey"
+    }
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/depradar/depradar-cli/issues"
+  },
+  "homepage": "https://github.com/depradar/depradar-cli#readme"
+}
