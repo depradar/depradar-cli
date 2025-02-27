@@ -8,7 +8,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,8 +18,8 @@ jobs:
       - run: npm ci
       # - run: npm test
 
-  publish-npm:
-    needs: build
+  publish:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +29,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
-      - run: npm publish --access public --tag ${{ github.event.release.tag_name }}
+      - name: Determine NPM tag
+        id: npm-tag
+        run: |
+          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+            echo "tag=beta" >> $GITHUB_ENV
+          else
+            echo "tag=latest" >> $GITHUB_ENV
+          fi
+      - name: Publish to NPM
+        run: npm publish --tag ${{ env.tag }} --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
