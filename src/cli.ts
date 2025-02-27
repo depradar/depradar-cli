@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import { registerCommands } from './commands';
-import { LogLevel, Print } from './utils/print';
+import { registerCommands } from '@/commands';
+import { LogLevel, Print } from '@/utils/print';
 
 registerCommands(program);
 

@@ -11,11 +11,18 @@ export function scanCommand(): Command {
     .option('-b, --branch <value>', 'The branch name')
     .option('-d, --dry-run', 'Run the scan without uploading results')
     .action(async (options) => {
+      // Get the dependencies
       const dependencyScanner = new DependencyScanner();
       const components = dependencyScanner.getDependencies();
 
       Print.log('Found dependencies:', options.dryRun ? LogLevel.info : LogLevel.verbose);
       Print.log(components, options.dryRun ? LogLevel.info : LogLevel.verbose);
+
+      // TODO: attempt to automatically get the repository and branch name
+      if (!options.repository || !options.branch) {
+        Print.log('Repository and branch name are required', LogLevel.error);
+        return;
+      }
 
       if (options.dryRun) {
         Print.log('Running in dry-run mode, results will not be uploaded', LogLevel.info);
