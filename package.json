@@ -40,8 +40,7 @@
     "build": "tsup",
     "watch": "tsup --watch",
     "test": "jest",
-    "coverage": "jest --coverage",
-    "publish": "tsup && npm publish"
+    "coverage": "jest --coverage"
   },
   "main": "dist/cli.js",
   "types": "dist/cli.d.ts",
