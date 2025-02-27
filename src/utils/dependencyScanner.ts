@@ -1,6 +1,6 @@
 import fs from 'fs';
-import { Print, LogLevel } from '@/lib/print';
-import LockFile from '@/lib/lockFile';
+import { Print, LogLevel } from './print';
+import LockFile from './lockFile';
 
 type PackageJson = {
   dependencies?: Record<string, string>;
@@ -10,7 +10,12 @@ type PackageJson = {
   bundledDependencies?: Record<string, string>;
 };
 
-type ResultType = { [packageName: string]: { type: string; version: string } };
+type ResultType = {
+  [packageName: string]: {
+    type: 'dependency' | 'devDependency' | 'peerDependency' | 'optionalDependency' | 'bundledDependency';
+    version: string;
+  };
+};
 
 export default class DependencyScanner {
   private lockFile: LockFile;
@@ -25,7 +30,7 @@ export default class DependencyScanner {
     return version;
   }
 
-  public getDependencies(args?: string[]): ResultType {
+  public getDependencies(): ResultType {
     Print.log('Scanning for dependencies...', LogLevel.info);
 
     // Read package.json file and log out dependencies

@@ -34,7 +34,7 @@
     "npm": ">=8.12.1"
   },
   "bin": {
-    "depradar": "dist/index.js"
+    "depradar": "dist/cli.js"
   },
   "scripts": {
     "build": "tsup",
@@ -43,8 +43,8 @@
     "coverage": "jest --coverage",
     "publish": "tsup && npm publish"
   },
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/cli.js",
+  "types": "dist/cli.d.ts",
   "files": [
     "dist"
   ],
@@ -57,6 +57,7 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "commander": "^13.1.0",
     "yaml": "^2.7.0"
   }
 }

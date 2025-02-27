@@ -1,4 +1,4 @@
-import { LogLevel, Print } from '@/lib/print';
+import { LogLevel, Print } from './print';
 import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';

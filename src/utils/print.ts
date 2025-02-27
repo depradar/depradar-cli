@@ -9,16 +9,15 @@ export enum LogLevel {
 export class Print {
   private static currentLogLevel: LogLevel = LogLevel.info;
 
-  static setLogLevel(level: string) {
-    const logLevel = LogLevel[level as keyof typeof LogLevel];
-    if (logLevel !== undefined) {
-      this.currentLogLevel = logLevel;
-    } else {
-      console.warn(`Unknown log level: ${level}`);
-    }
+  static setLogLevel(level: LogLevel) {
+    this.currentLogLevel = level;
   }
 
-  static log(message: string, loglevel: LogLevel = LogLevel.info) {
+  static log(message: string | object, loglevel: LogLevel = LogLevel.info) {
+    if (typeof message === 'object') {
+      message = JSON.stringify(message, undefined, 2);
+    }
+
     if (loglevel <= this.currentLogLevel) {
       switch (loglevel) {
         case LogLevel.error:
