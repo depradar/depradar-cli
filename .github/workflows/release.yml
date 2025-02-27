@@ -33,7 +33,7 @@ jobs:
         id: npm-tag
         run: |
           if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
-            echo "tag=beta" >> $GITHUB_ENV
+            echo "tag=alpha" >> $GITHUB_ENV
           else
             echo "tag=latest" >> $GITHUB_ENV
           fi
